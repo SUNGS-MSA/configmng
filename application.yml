@@ -1,0 +1,16 @@
+spring.profiles: local
+taeng:
+  profile: I'm local taeng
+  comment: Hello! local taeng
+
+---
+spring.profiles: dev
+taeng:
+  profile: I'm dev taeng
+  comment: Hello! dev taeng
+
+---
+spring.profiles: prod
+taeng:
+  profile: I'm prod taeng
+  comment: Hello! prod taeng
