@@ -1,16 +1,28 @@
-spring.profiles: local
+spring:
+  config:
+    activate:
+      on-profile: local
+
 taeng:
   profile: I'm local taeng
   comment: Hello! local taeng
 
 ---
-spring.profiles: dev
+spring:
+  config:
+    activate:
+      on-profile: dev
+
 taeng:
   profile: I'm dev taeng
   comment: Hello! dev taeng
 
 ---
-spring.profiles: prod
+spring:
+  config:
+    activate:
+      on-profile: prod
+
 taeng:
   profile: I'm prod taeng
   comment: Hello! prod taeng
