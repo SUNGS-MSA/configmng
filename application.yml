@@ -14,7 +14,7 @@ spring:
       on-profile: dev
 
 taeng:
-  profile: I'm dev taeng
+  profile: I'm dev taeng. ${configmng.id:hehe} 
   comment: Hello! dev taeng
 
 ---
