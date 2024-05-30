@@ -14,8 +14,8 @@ spring:
       on-profile: dev
 
 taeng:
-  profile: I'm dev taeng. updated!!
-  comment: Hello! dev taeng updated!!
+  profile: I'm dev taeng. updated2!!
+  comment: Hello! dev taeng updated2!!
 
 ---
 spring:
