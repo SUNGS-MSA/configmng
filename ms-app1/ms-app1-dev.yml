@@ -1,3 +1,7 @@
+spring:
+  application:
+    name: ms-app1
+
 ms-app1:
   profile: I'm dev ms-app1
   comment: Hello! dev ms-app1
