@@ -3,5 +3,4 @@ spring:
     name: ms-app1
 
 ms-app1:
-  common: common profile
-  
+  common: I'm common properties
