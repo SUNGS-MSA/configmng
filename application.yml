@@ -4,12 +4,8 @@ spring:
     activate:
       on-profile: local
       
-#테스트용문구
-taeng:
-  profile: I'm local taeng
-  comment: Hello! local taeng
 
-#mq 접속정보   
+  #mq 접속정보   
   rabbitmq:
     host: "192.168.56.20" #${mq_host:192.168.56.20}
     port: "15672" #${mq_port:15672}
@@ -22,12 +18,8 @@ spring:
     activate:
       on-profile: dev
 
-#테스트용문구
-taeng:
-  profile: I'm dev taeng. updated!!
-  comment: Hello! dev taeng updated!!
 
-#mq 접속정보   
+  #mq 접속정보   
   rabbitmq:
     host: "192.168.56.20" #${mq_host:192.168.56.20}
     port: "15672" #${mq_port:15672}
@@ -42,14 +34,11 @@ spring:
     activate:
       on-profile: prod
 
-taeng:
-  profile: I'm prod taeng
-  comment: Hello! prod taeng
 
-#mq 접속정보   
+  #mq 접속정보   
   rabbitmq:
-    host: "192.168.56.20" #${mq_host:192.168.56.20}
-    port: "15672" #${mq_port:15672}
-    username: guest #${mq_id:guest}
-    password: guest #${mq_pw:guest}
+    host: ${mq_host:192.168.56.20}
+    port: ${mq_port:15672}
+    username: ${mq_id:guest}
+    password: ${mq_pw:guest}
       
