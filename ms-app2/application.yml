@@ -1,0 +1,28 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+
+taeng:
+  profile: I'm local taeng
+  comment: Hello! local taeng
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+taeng:
+  profile: I'm dev taeng. updated!!
+  comment: Hello! dev taeng updated!!
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+taeng:
+  profile: I'm prod taeng
+  comment: Hello! prod taeng
