@@ -3,5 +3,5 @@ spring:
     name: ms-app1
 
 ms-app1:
-  profile: I'm local ms-app1.updated
-  comment: Hello! local ms-app1.updated
+  profile: I'm local ms-app1.updated2
+  comment: Hello! local ms-app1.updated2
