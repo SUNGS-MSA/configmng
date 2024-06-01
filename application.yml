@@ -19,11 +19,11 @@ spring:
       
 
   #mq 접속정보   
-  rabbitmq:
-    host: 192.168.56.20 #${mq_host:192.168.56.20}
-    port: 15672 #${mq_port:15672}
-    username: guest #${mq_id:guest}
-    password: guest #${mq_pw:guest}
+#  rabbitmq:
+#    host: 192.168.56.20 #${mq_host:192.168.56.20}
+#    port: 15672 #${mq_port:15672}
+#    username: guest #${mq_id:guest}
+#    password: guest #${mq_pw:guest}
 
 --- #dev환경 ~~~~~~~~~~~~~~~~~~~~~~~~
 spring:
@@ -33,11 +33,11 @@ spring:
 
 
   #mq 접속정보   
-  rabbitmq:
-    host: "192.168.56.20" #${mq_host:192.168.56.20}
-    port: "15672" #${mq_port:15672}
-    username: guest #${mq_id:guest}
-    password: guest #${mq_pw:guest}
+#  rabbitmq:
+#    host: "192.168.56.20" #${mq_host:192.168.56.20}
+#    port: "15672" #${mq_port:15672}
+#    username: guest #${mq_id:guest}
+#    password: guest #${mq_pw:guest}
     
     
     
@@ -48,10 +48,10 @@ spring:
       on-profile: prod
 
 
-  #mq 접속정보   
-  rabbitmq:
-    host: ${mq_host:192.168.56.20}
-    port: ${mq_port:15672}
-    username: ${mq_id:guest}
-    password: ${mq_pw:guest}
+#  #mq 접속정보   
+#  rabbitmq:
+#    host: ${mq_host:192.168.56.20}
+#    port: ${mq_port:15672}
+#    username: ${mq_id:guest}
+#    password: ${mq_pw:guest}
       
