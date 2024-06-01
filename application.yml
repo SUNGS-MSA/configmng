@@ -1,3 +1,16 @@
+#Actuator 설정
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" #refresh  #refresh는 config server 로부터 설정을 다시 받아오는 endpoint 이다.
+        #● 노출된 전체 엔드포인트조회 :  
+        #  - 웹브라우저에  http://앱호스트명/actuator  (GET방식) 호출하면 해당앱에 노출된 모든 엔드포인트 리스트가 출력된다. 
+        #    ex) http://localhost:8081/actuator (주의 /actuator/ 으로 뒤에 슬래시 '/' 붙이면 에러발생)   
+        #● 특정엔드포인트 조회 : url로 호출시는 반드시 post방식으로 만 가능하다. ex) curl -X POST http://localhost:8081/actuator/refresh
+
+
+
 #local환경 ~~~~~~~~~~~~~~~~~~~~~~~~
 spring:
   config:
@@ -7,8 +20,8 @@ spring:
 
   #mq 접속정보   
   rabbitmq:
-    host: "192.168.56.20" #${mq_host:192.168.56.20}
-    port: "15672" #${mq_port:15672}
+    host: 192.168.56.20 #${mq_host:192.168.56.20}
+    port: 15672 #${mq_port:15672}
     username: guest #${mq_id:guest}
     password: guest #${mq_pw:guest}
 
