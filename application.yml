@@ -21,7 +21,7 @@ spring:
   #mq 접속정보   
   rabbitmq:
     host: 192.168.56.20 #${mq_host:192.168.56.20}
-    port: 15672 #${mq_port:15672}
+    port: 5672 #${mq_port:15672}
     username: guest #${mq_id:guest}
     password: guest #${mq_pw:guest}
 
