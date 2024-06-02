@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: ms-app1
+
+ms-app1:
+  common: I'm common properties
