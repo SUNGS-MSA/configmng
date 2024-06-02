@@ -1,3 +1,10 @@
+###################################################
+## 모드 앱의 공용환경변수(단 Config Server는 제외) - config server가 config server를 호출하여 정보를 가져올 수 없기때문)
+## - 모든 앱이 공용으로 사용하는 모듈의 설정정보를 셋팅 
+####################################################
+
+
+
 #Actuator 설정
 management:
   endpoints:
@@ -44,10 +51,10 @@ spring:
 
   #mq 접속정보   
   rabbitmq:
-    host: "192.168.56.20" #${mq_host:192.168.56.20}
-    port: "5672" #${mq_port:15672}
-    username: guest #${mq_id:guest}
-    password: guest #${mq_pw:guest}
+    host: ${mq_host:192.168.56.20}
+    port: ${mq_port:5672}
+    username: ${mq_id:guest}
+    password: ${mq_pw:guest}
     
     
 eureka:
@@ -66,10 +73,10 @@ spring:
 
   #mq 접속정보   
   rabbitmq:
-    host: "192.168.56.20" #${mq_host:192.168.56.20}
-    port: "5672" #${mq_port:15672}
-    username: guest #${mq_id:guest}
-    password: guest #${mq_pw:guest}
+    host: ${mq_host:192.168.56.20}
+    port: ${mq_port:5672}
+    username: ${mq_id:guest}
+    password: ${mq_pw:guest}
   
   
 eureka:
