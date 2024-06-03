@@ -42,7 +42,7 @@ eureka:
     register-with-eureka: true #시작시 eureka서버에 자신을 등록 
     fetch-registry: true  #로컬에 유레카서버의 레지스트리 정보를 가져와 캐시를 저장할지 여부
     service-url:  #유레카서버 주소
-      defaultZone: ${eureka_servers:http://peer1.127.0.0.1.nip.io:8761/eureka,http://peer2.127.0.0.1.nip.io:8762/eureka}
+      defaultZone: ${eureka_servers:http://peer1.127.0.0.1.nip.io:9011/eureka,http://peer2.127.0.0.1.nip.io:9012/eureka}
 
 
 --- #dev환경 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -65,7 +65,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url: 
-      defaultZone: ${eureka_servers:http://localhost:8761/eureka} 
+      defaultZone: ${eureka_servers:http://localhost:9011/eureka} 
          
 --- #prod환경 ~~~~~~~~~~~~~~~~~~~~~~~~
 spring:
@@ -87,5 +87,5 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url: 
-      defaultZone: ${eureka_servers:http://localhost:8761/eureka} 
+      defaultZone: ${eureka_servers:http://localhost:9011/eureka} 
      
