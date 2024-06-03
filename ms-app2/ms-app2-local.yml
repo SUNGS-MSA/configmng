@@ -1,8 +1,1 @@
-spring:
-  application:
-    name: ms-app1
-
-
-ms-app1:
-  profile: I'm local ms-app1.updated3
-  comment: Hello! local ms-app1.updated3
+common.comment: Hello! Local

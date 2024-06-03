@@ -1,7 +1,1 @@
-spring:
-  application:
-    name: ms-app1
-
-ms-app1:
-  profile: I'm prod ms-app1
-  comment: Hello! prod ms-app1
+common.comment: Hello! Prod
