@@ -26,6 +26,7 @@ spring:
             - RewritePath=/ms-app2/(?<path>.*),/$\{path}  
  
  
-#라우팅 로그확인 필요시 설정(info에서는 라우팅로그가 남지 않더라)  
-logging.level.org.springframework.cloud.gateway: DEBUG
+#라우팅 로그확인 필요시 'DEBUG' 설정(info에서는 라우팅로그가 남지 않더라)  
+# 근데 DEBUG도 로그가 너무 많이싸여서, 개발시는 DEBUG로 하고 운영시에는 actuator를 통해 라우팅 로그를 확인하는 방법으로 하자.
+#logging.level.org.springframework.cloud.gateway: DEBUG
 
