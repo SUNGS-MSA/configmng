@@ -10,7 +10,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: "*" #refresh  #refresh는 config server 로부터 설정을 다시 받아오는 endpoint 이다.
+        include: gateway #"*" #refresh  #refresh는 config server 로부터 설정을 다시 받아오는 endpoint 이다.
         #● 노출된 전체 엔드포인트조회 :  
         #  - 웹브라우저에  http://앱호스트명/actuator  (GET방식) 호출하면 해당앱에 노출된 모든 엔드포인트 리스트가 출력된다. 
         #    ex) http://localhost:8081/actuator (주의 /actuator/ 으로 뒤에 슬래시 '/' 붙이면 에러발생)   
