@@ -17,6 +17,13 @@ management:
         #● 특정엔드포인트 조회 : url로 호출시는 반드시 post방식으로 만 가능하다. ex) curl -X POST http://localhost:8081/actuator/refresh
 
 
+  endpoint:
+    gateway:
+      enabled=true
+#management.endpoints.web.exposure.include=gateway
+
+
+
 # disable ribbon. use ReactorLoadBalancerExchangeFilterFunction - 로드밸런스로 SCL을 사용할 것이기때문에 ribbon사용여부는 false로 처리
 spring.cloud:
   loadbalancer.ribbon: false 
