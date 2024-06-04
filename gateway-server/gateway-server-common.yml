@@ -24,7 +24,8 @@ spring:
             - Path=/ms-app2/**
           filters:
             - RewritePath=/ms-app2/(?<path>.*),/$\{path}  
-  
-#logging:
-#  level:
-#    root: 'debug'  
+ 
+ 
+#라우팅 로그확인 필요시 설정(info에서는 라우팅로그가 남지 않더라)  
+logging.level.org.springframework.cloud.gateway: DEBUG
+
