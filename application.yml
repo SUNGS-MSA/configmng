@@ -127,8 +127,9 @@ eureka:
     fetch-registry: true
     service-url: 
       defaultZone: ${eureka_servers:http://localhost:9011/eureka} 
+
      
- #Tracing(micrometer + zipkin) 설정
+#Tracing(micrometer + zipkin) 설정
 management:
   tracing:
     sampling:
