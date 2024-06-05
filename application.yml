@@ -23,14 +23,14 @@ spring.cloud:
   loadbalancer.ribbon: false 
 
 
-#local환경 ~~~~~~~~~~~~~~~~~~~~~~~~
+--- #local환경 ~~~~~~~~~~~~~~~~~~~~~~~~
 spring:
   config:
     activate:
       on-profile: local
       
 
-  #mq 접속정보   
+  #mq 접속정보  (Config Server 와 Spring Cloud Bus연동을 위해 필요) 
   rabbitmq:
     host: ${mq_host:192.168.56.20}
     port: ${mq_port:5672}
@@ -38,6 +38,7 @@ spring:
     password: ${mq_pw:guest}
 
 
+#Service Discovery(Eureka) 연동 client 설정
 eureka:
   client:  # eureka clinet로서 정보 
     register-with-eureka: true #시작시 eureka서버에 자신을 등록 
@@ -46,6 +47,24 @@ eureka:
       defaultZone: ${eureka_servers:http://peer1.127.0.0.1.nip.io:9011/eureka,http://peer2.127.0.0.1.nip.io:9012/eureka}
 
 
+#Tracing(micrometer + zipkin) 설정
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+    propagation:
+      consume: b3
+      produce: b3-multi
+      # b3는 단일 추적 시스템에서 사용되고, b3-multi는 다중 추적 시스템 간에 추적 정보를 공유할 때 사용      
+  zipkin:
+    tracing:
+      endpoint: ${zipkin_endpoint:http://192.168.56.20:9411/api/v2/spans} # zipkin서버에 데이타를 보내는 주소(zipkin의 엔드포인트)  "http://localhost:9411/api/v2/spans"
+      
+logging:
+  pattern:
+    level: "%5p [%X{traceId:-},%X{spanId:-}]"  #Tracing micrometer가 찍어주는 Tracd ID, SpanID 를 로그에 표기하는 방식
+    
+   
 --- #dev환경 ~~~~~~~~~~~~~~~~~~~~~~~~
 spring:
   config:
@@ -53,21 +72,40 @@ spring:
       on-profile: dev
 
 
-  #mq 접속정보   
+  #mq 접속정보  (Config Server 와 Spring Cloud Bus연동을 위해 필요) 
   rabbitmq:
     host: ${mq_host:192.168.56.20}
     port: ${mq_port:5672}
     username: ${mq_id:guest}
     password: ${mq_pw:guest}
     
-    
+#Tracing(micrometer + zipkin) 설정    
 eureka:
   client: 
     register-with-eureka: true
     fetch-registry: true
     service-url: 
       defaultZone: ${eureka_servers:http://localhost:9011/eureka} 
-         
+  
+  
+#Tracing(micrometer + zipkin) 설정
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+    propagation:
+      consume: b3
+      produce: b3-multi
+      # b3는 단일 추적 시스템에서 사용되고, b3-multi는 다중 추적 시스템 간에 추적 정보를 공유할 때 사용      
+  zipkin:
+    tracing:
+      endpoint: ${zipkin_endpoint:http://192.168.56.20:9411/api/v2/spans} # zipkin서버에 데이타를 보내는 주소(zipkin의 엔드포인트)  "http://localhost:9411/api/v2/spans"
+      
+logging:
+  pattern:
+    level: "%5p [%X{traceId:-},%X{spanId:-}]"  #Tracing micrometer가 찍어주는 Tracd ID, SpanID 를 로그에 표기하는 방식
+    
+             
 --- #prod환경 ~~~~~~~~~~~~~~~~~~~~~~~~
 spring:
   config:
@@ -75,14 +113,14 @@ spring:
       on-profile: prod
 
 
-  #mq 접속정보   
+  #mq 접속정보  (Config Server 와 Spring Cloud Bus연동을 위해 필요) 
   rabbitmq:
     host: ${mq_host:192.168.56.20}
     port: ${mq_port:5672}
     username: ${mq_id:guest}
     password: ${mq_pw:guest}
   
-  
+#Tracing(micrometer + zipkin) 설정  
 eureka:
   client: 
     register-with-eureka: true
@@ -90,3 +128,20 @@ eureka:
     service-url: 
       defaultZone: ${eureka_servers:http://localhost:9011/eureka} 
      
+ #Tracing(micrometer + zipkin) 설정
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+    propagation:
+      consume: b3
+      produce: b3-multi
+      # b3는 단일 추적 시스템에서 사용되고, b3-multi는 다중 추적 시스템 간에 추적 정보를 공유할 때 사용      
+  zipkin:
+    tracing:
+      endpoint: ${zipkin_endpoint:http://192.168.56.20:9411/api/v2/spans} # zipkin서버에 데이타를 보내는 주소(zipkin의 엔드포인트)  "http://localhost:9411/api/v2/spans"
+      
+logging:
+  pattern:
+    level: "%5p [%X{traceId:-},%X{spanId:-}]"  #Tracing micrometer가 찍어주는 Tracd ID, SpanID 를 로그에 표기하는 방식
+    
