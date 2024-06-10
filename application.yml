@@ -65,7 +65,11 @@ logging:
     level: "%5p [%X{traceId:-},%X{spanId:-}]"  #로컬 머신의 로그에서 traceId, spanId를 확인하기 위해, 대신 @Slf4j 나 org.slf4j.Logger 를 사용해서 로그찍어야한다. (zipkin ui에서만 확인하려면 필요 없다.)
   level: 
     root: info  
-   
+  
+  #custum속성 - logback-spring.xml에서 사용할 사용자정의 변수
+  custum:
+    logstash:
+      host: ${logstash_host:192.168.56.20}
    
 --- #dev환경 ~~~~~~~~~~~~~~~~~~~~~~~~
 spring:
@@ -109,6 +113,10 @@ logging:
   level: 
     root: info  
   
+  #custum속성 - logback-spring.xml에서 사용할 사용자정의 변수
+  custum:
+    logstash:
+      host: ${logstash_host:192.168.56.20}
              
 --- #prod환경 ~~~~~~~~~~~~~~~~~~~~~~~~
 spring:
@@ -145,10 +153,16 @@ management:
   zipkin:
     tracing:
       endpoint: ${zipkin_endpoint:http://192.168.56.20:9411/api/v2/spans} # zipkin서버에 데이타를 보내는 주소(zipkin의 엔드포인트)  "http://localhost:9411/api/v2/spans"
+    
       
 logging:
   pattern:
     level: "%5p [%X{traceId:-},%X{spanId:-}]"  #로컬 머신의 로그에서 traceId, spanId를 확인하기 위해, 대신 @Slf4j 나 org.slf4j.Logger 를 사용해서 로그찍어야한다. (zipkin ui에서만 확인하려면 필요 없다.)
   level: 
     root: info  
-  
+
+  #custum속성 - logback-spring.xml에서 사용할 사용자정의 변수
+  custum:
+    logstash:
+      host: ${logstash_host:192.168.56.20}
+      
