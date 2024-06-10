@@ -63,7 +63,8 @@ management:
 logging:
   pattern:
     level: "%5p [%X{traceId:-},%X{spanId:-}]"  #로컬 머신의 로그에서 traceId, spanId를 확인하기 위해, 대신 @Slf4j 나 org.slf4j.Logger 를 사용해서 로그찍어야한다. (zipkin ui에서만 확인하려면 필요 없다.)
-    
+  level: 
+    root: info  
    
 --- #dev환경 ~~~~~~~~~~~~~~~~~~~~~~~~
 spring:
@@ -104,7 +105,9 @@ management:
 logging:
   pattern:
     level: "%5p [%X{traceId:-},%X{spanId:-}]"  #로컬 머신의 로그에서 traceId, spanId를 확인하기 위해, 대신 @Slf4j 나 org.slf4j.Logger 를 사용해서 로그찍어야한다. (zipkin ui에서만 확인하려면 필요 없다.)
-    
+  level: 
+    root: info  
+  
              
 --- #prod환경 ~~~~~~~~~~~~~~~~~~~~~~~~
 spring:
@@ -145,4 +148,6 @@ management:
 logging:
   pattern:
     level: "%5p [%X{traceId:-},%X{spanId:-}]"  #로컬 머신의 로그에서 traceId, spanId를 확인하기 위해, 대신 @Slf4j 나 org.slf4j.Logger 를 사용해서 로그찍어야한다. (zipkin ui에서만 확인하려면 필요 없다.)
-    
+  level: 
+    root: info  
+  
