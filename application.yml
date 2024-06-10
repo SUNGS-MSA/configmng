@@ -66,6 +66,7 @@ logging:
   level: 
     root: info  
    
+   
 --- #dev환경 ~~~~~~~~~~~~~~~~~~~~~~~~
 spring:
   config:
