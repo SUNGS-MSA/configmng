@@ -66,7 +66,7 @@ logging:
   level: 
     root: info  
   
-  #custum속성 - logback-spring.xml에서 사용할 사용자정의 변수
+  #custum속성 - logback-spring.xml에서 logstash에 로그를 보내기위해 사용할 사용자정의 변수
   custum:
     logstash:
       host: ${logstash_host:192.168.56.20}
@@ -161,7 +161,7 @@ logging:
   level: 
     root: info  
 
-  #custum속성 - logback-spring.xml에서 사용할 사용자정의 변수
+  #custum속성 - logback-spring.xml에서 logstash에 로그를 보내기위해 사용할 사용자정의 변수
   custum:
     logstash:
       host: ${logstash_host:192.168.56.20}
