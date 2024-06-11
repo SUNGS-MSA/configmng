@@ -19,9 +19,16 @@ management:
 
 
 # disable ribbon. use ReactorLoadBalancerExchangeFilterFunction - 로드밸런스로 SCL을 사용할 것이기때문에 ribbon사용여부는 false로 처리
-spring.cloud:
-  loadbalancer.ribbon: false 
+spring:
+  cloud:
+    loadbalancer:
+      ribbon: false 
 
+  #Spring Session 사용 시 세션 쿠키의 기본 Name은 SESSION이지만, 일반적으로 세션 쿠키의 이름은 JSESSIONID이기 때문에 JESSIONID로 세션 쿠키 Name을 변경
+  servlet:
+    session:
+      cookie:
+        name: JSESSIONID
 
 --- #local환경 ~~~~~~~~~~~~~~~~~~~~~~~~
 spring:
@@ -37,8 +44,21 @@ spring:
     username: ${mq_id:guest}
     password: ${mq_pw:guest}
 
+  
+  #Redis Configuration  
+  session:   #spring session의 repository로 redis를 사용하는 설정
+    store-type: redis  # @EnableRedisHttpSession 어노테이션을 활성화하는 설정(설정시 소스에서 선언 안해줘도 된다.).springSessionRepositoryFilter라는 이름의 Filter 인터페이스를 구현한 빈을 생성
+    timeout: 3600 #디폴트기간 초  
+    redis:
+      namespace: msa:session  # redis.namespace의 설정은 세션 저장 시 prefix를 지정하는 설정 (기본값은 spring:session인데, 서비스 이름으로 변경)
+  data:    #redis client로서의 설정
+    redis:
+      host: ${redis_host:192.168.56.20}   #localhost
+      #password: 1234   #레디스는 패스워드기반의 인증시스템인데, 디폴트 비밀번호는 없다. 따라서 우리는 비번없이 접속한다.
+      port: 6379
 
-#Service Discovery(Eureka) 연동 client 설정
+
+##Servie Discovery - Client(eureka) 설정  
 eureka:
   client:  # eureka clinet로서 정보 
     register-with-eureka: true #시작시 eureka서버에 자신을 등록 
@@ -78,14 +98,28 @@ spring:
       on-profile: dev
 
 
-  #mq 접속정보  (Config Server 와 Spring Cloud Bus연동을 위해 필요) 
+  ##mq 접속정보  (Config Server 와 Spring Cloud Bus연동을 위해 필요) 
   rabbitmq:
     host: ${mq_host:192.168.56.20}
     port: ${mq_port:5672}
     username: ${mq_id:guest}
     password: ${mq_pw:guest}
     
-#Tracing(micrometer + zipkin) 설정    
+    
+  ##Redis Configuration  
+  session:   #spring session의 repository로 redis를 사용하는 설정
+    store-type: redis  # @EnableRedisHttpSession 어노테이션을 활성화하는 설정(설정시 소스에서 선언 안해줘도 된다.).springSessionRepositoryFilter라는 이름의 Filter 인터페이스를 구현한 빈을 생성
+    timeout: 3600 #디폴트기간 초  
+    redis:
+      namespace: msa:session  # redis.namespace의 설정은 세션 저장 시 prefix를 지정하는 설정 (기본값은 spring:session인데, 서비스 이름으로 변경)
+  data:    #redis client로서의 설정
+    redis:
+      host: ${redis_host:192.168.56.20}   #localhost
+      #password: 1234   #레디스는 패스워드기반의 인증시스템인데, 디폴트 비밀번호는 없다. 따라서 우리는 비번없이 접속한다.
+      port: 6379
+
+    
+##Servie Discovery - Client(eureka) 설정    
 eureka:
   client: 
     register-with-eureka: true
@@ -94,7 +128,7 @@ eureka:
       defaultZone: ${eureka_servers:http://localhost:9011/eureka} 
   
   
-#Tracing(micrometer + zipkin) 설정
+##Tracing(micrometer + zipkin) 설정
 management:
   tracing:
     sampling:
@@ -106,13 +140,14 @@ management:
   zipkin:
     tracing:
       endpoint: ${zipkin_endpoint:http://192.168.56.20:9411/api/v2/spans} # zipkin서버에 데이타를 보내는 주소(zipkin의 엔드포인트)  "http://localhost:9411/api/v2/spans"
-      
+
+
+##로깅설정      
 logging:
   pattern:
     level: "%5p [%X{traceId:-},%X{spanId:-}]"  #로컬 머신의 로그에서 traceId, spanId를 확인하기 위해, 대신 @Slf4j 나 org.slf4j.Logger 를 사용해서 로그찍어야한다. (zipkin ui에서만 확인하려면 필요 없다.)
   level: 
     root: info  
-  
   #custum속성 - logback-spring.xml에서 사용할 사용자정의 변수
   custum:
     logstash:
@@ -125,14 +160,28 @@ spring:
       on-profile: prod
 
 
-  #mq 접속정보  (Config Server 와 Spring Cloud Bus연동을 위해 필요) 
+  ##mq 접속정보  (Config Server 와 Spring Cloud Bus연동을 위해 필요) 
   rabbitmq:
     host: ${mq_host:192.168.56.20}
     port: ${mq_port:5672}
     username: ${mq_id:guest}
     password: ${mq_pw:guest}
-  
-#Tracing(micrometer + zipkin) 설정  
+
+
+  ##Redis Configuration  
+  session:   #spring session의 repository로 redis를 사용하는 설정
+    store-type: redis  # @EnableRedisHttpSession 어노테이션을 활성화하는 설정(설정시 소스에서 선언 안해줘도 된다.).springSessionRepositoryFilter라는 이름의 Filter 인터페이스를 구현한 빈을 생성
+    timeout: 3600 #디폴트기간 초  
+    redis:
+      namespace: msa:session  # redis.namespace의 설정은 세션 저장 시 prefix를 지정하는 설정 (기본값은 spring:session인데, 서비스 이름으로 변경)
+  data:    #redis client로서의 설정
+    redis:
+      host: ${redis_host:192.168.56.20}   #localhost
+      #password: 1234   #레디스는 패스워드기반의 인증시스템인데, 디폴트 비밀번호는 없다. 따라서 우리는 비번없이 접속한다.
+      port: 6379
+
+
+##Servie Discovery - Client(eureka) 설정  
 eureka:
   client: 
     register-with-eureka: true
@@ -141,7 +190,7 @@ eureka:
       defaultZone: ${eureka_servers:http://localhost:9011/eureka} 
 
      
-#Tracing(micrometer + zipkin) 설정
+##Tracing(micrometer + zipkin) 설정
 management:
   tracing:
     sampling:
@@ -154,13 +203,13 @@ management:
     tracing:
       endpoint: ${zipkin_endpoint:http://192.168.56.20:9411/api/v2/spans} # zipkin서버에 데이타를 보내는 주소(zipkin의 엔드포인트)  "http://localhost:9411/api/v2/spans"
     
-      
+    
+##로깅설정     
 logging:
   pattern:
     level: "%5p [%X{traceId:-},%X{spanId:-}]"  #로컬 머신의 로그에서 traceId, spanId를 확인하기 위해, 대신 @Slf4j 나 org.slf4j.Logger 를 사용해서 로그찍어야한다. (zipkin ui에서만 확인하려면 필요 없다.)
   level: 
     root: info  
-
   #custum속성 - logback-spring.xml에서 logstash에 로그를 보내기위해 사용할 사용자정의 변수
   custum:
     logstash:
