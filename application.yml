@@ -86,7 +86,7 @@ logging:
   pattern:
     level: "%5p [%X{traceId:-},%X{spanId:-}]"  #로컬 머신의 로그에서 traceId, spanId를 확인하기 위해, 대신 @Slf4j 나 org.slf4j.Logger 를 사용해서 로그찍어야한다. (zipkin ui에서만 확인하려면 필요 없다.)
   level: 
-    root: info  
+    root: debug  
   
   #custum속성 - logback-spring.xml에서 logstash에 로그를 보내기위해 사용할 사용자정의 변수
   custum:
