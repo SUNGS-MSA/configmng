@@ -45,13 +45,13 @@ spring:
     password: ${mq_pw:guest}
 
   
-  #Redis Configuration : Redis저장소를 사용하기 위한 정보 (RedisTemplate를 통해 데이타를 set/get할시필요)
+  #Redis 기본 Configuration: Redis저장소를 사용하기 위한 정보 (RedisTemplate를 통해 데이타를 set/get할시필요)
   data:    #redis를 사용하기 위한 기본저보
     redis:
       host: ${redis_host:192.168.56.20}   #localhost
       #password: 1234   #레디스는 패스워드기반의 인증시스템인데, 디폴트 비밀번호는 없다. 따라서 우리는 비번없이 접속한다.
       port: 6379
-  #Spring Sesision-Redis Configuration :Spring session 과 redis연동시에만 설정     
+  #Spring Sesision-Redis연동시 Configuration :Spring session 과 redis연동시에만 설정     
   session:
     store-type: redis  # @EnableRedisHttpSession 어노테이션을 활성화하는 설정(설정시 소스에서 선언 안해줘도 된다.).springSessionRepositoryFilter라는 이름의 Filter 인터페이스를 구현한 빈을 생성
     timeout: 3600 #디폴트기간 초  
