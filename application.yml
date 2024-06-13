@@ -46,16 +46,17 @@ spring:
 
   
   #Redis Configuration  
-  session:   #spring session의 repository로 redis를 사용하는 설정
-    store-type: redis  # @EnableRedisHttpSession 어노테이션을 활성화하는 설정(설정시 소스에서 선언 안해줘도 된다.).springSessionRepositoryFilter라는 이름의 Filter 인터페이스를 구현한 빈을 생성
-    timeout: 3600 #디폴트기간 초  
-    redis:
-      namespace: msa:session  # redis.namespace의 설정은 세션 저장 시 prefix를 지정하는 설정 (기본값은 spring:session인데, 서비스 이름으로 변경),이렇게 하면 redis의키는 'msa:session:sessions' 로 생성된다.
-  data:    #redis client로서의 설정
+  data:    #redis를 사용하기 위한 기본저보
     redis:
       host: ${redis_host:192.168.56.20}   #localhost
       #password: 1234   #레디스는 패스워드기반의 인증시스템인데, 디폴트 비밀번호는 없다. 따라서 우리는 비번없이 접속한다.
       port: 6379
+  session:   #spring session의 repository로 redis를 사용하는 추가설정(redis연동 spring session사용하지 않을시는 필요없다.)
+    store-type: redis  # @EnableRedisHttpSession 어노테이션을 활성화하는 설정(설정시 소스에서 선언 안해줘도 된다.).springSessionRepositoryFilter라는 이름의 Filter 인터페이스를 구현한 빈을 생성
+    timeout: 3600 #디폴트기간 초  
+    redis:
+      namespace: msa:session  # redis.namespace의 설정은 세션 저장 시 prefix를 지정하는 설정 (기본값은 spring:session인데, 서비스 이름으로 변경),이렇게 하면 redis의키는 'msa:session:sessions' 로 생성된다.
+
 
 
 ##Servie Discovery - Client(eureka) 설정  
